@@ -37,3 +37,20 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'dockerweb/manifests'
+        Contents: |
+          app.yml
+          service.yml
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+ 
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        manifests: |
+           $(Build.ArtifactStagingDirectory)/app.yml
+           $(Build.ArtifactStagingDirectory)/service.yml
+        kubernetesServiceConnection: 'cluster-connection'
+        containers: |
+          ${containerRegistry}/dockerapp:$(tag)
