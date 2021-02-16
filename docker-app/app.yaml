@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: my-image
-        image: pluralsightacrsp.azurecr.io/dockerapp: $(tag)
+        image: pluralsightacrsp.azurecr.io/dockerapp: 28
         ports:
         - containerPort: 80
