@@ -41,16 +41,16 @@ stages:
       inputs:
         SourceFolder: 'docker-app'
         Contents: |
-          app.yml
-          service.yml
+          app.yaml
+          service.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
  
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
         manifests: |
-           $(Build.ArtifactStagingDirectory)/app.yml
-           $(Build.ArtifactStagingDirectory)/service.yml
+           $(Build.ArtifactStagingDirectory)/app.yaml
+           $(Build.ArtifactStagingDirectory)/service.yaml
         kubernetesServiceConnection: 'cluster-connection'
         containers: |
           ${containerRegistry}/dockerapp:$(tag)
