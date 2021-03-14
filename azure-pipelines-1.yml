@@ -42,4 +42,11 @@ stages:
         tags: |
           $(tag)
           
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: 'docker-app'
+        Contents: |
+          app.yaml
+          service.yaml
+        TargetFolder: '$(System.ArtifactStagingDirectory)'  
           
