@@ -53,4 +53,4 @@ stages:
            $(Build.ArtifactStagingDirectory)/service.yaml
         kubernetesServiceConnection: 'cluster-connection'
         containers: |
-          ${containerRegistry}/dockerapp:$(tag)
+          ${containerRegistry}/dockerapp:$(Build.BuildId)
