@@ -45,12 +45,3 @@ stages:
           service.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
  
-    - task: KubernetesManifest@0
-      inputs:
-        action: 'deploy'
-        manifests: |
-           $(Build.ArtifactStagingDirectory)/app.yaml
-           $(Build.ArtifactStagingDirectory)/service.yaml
-        kubernetesServiceConnection: 'cluster-connection'
-        containers: |
-          ${containerRegistry}/dockerapp:$(Build.BuildId)
