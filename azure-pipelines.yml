@@ -36,7 +36,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          $(tag)
+          'lateset'
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'docker-app'
@@ -44,4 +44,14 @@ stages:
           app.yaml
           service.yaml
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        manifests: |
+           $(Build.ArtifactStagingDirectory)/app.yaml
+           $(Build.ArtifactStagingDirectory)/service.yaml
+        kubernetesServiceConnection: 'cluster-connection'
+        containers: |
+          ${containerRegistry}/dockerapp:lateset
  
