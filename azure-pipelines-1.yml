@@ -42,5 +42,5 @@ stages:
         Contents: |
           app.yaml
           service.yaml
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'  
+        TargetFolder: '$(System.DefaultWorkingDirectory)'  
             
