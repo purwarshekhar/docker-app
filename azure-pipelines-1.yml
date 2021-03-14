@@ -38,7 +38,7 @@ stages:
           $(tag)
     - task: CopyFiles@2
       inputs:
-        SourceFolder: 'docker-app/docker-app'
+        SourceFolder: 'docker-app'
         Contents: |
           app.yml
           service.yml
